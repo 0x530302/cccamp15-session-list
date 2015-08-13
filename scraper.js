@@ -1,6 +1,7 @@
 var poolModule = require('generic-pool');
 var cheerio = require('cheerio');
 var request = require('request');
+var extend = require('util')._extend;
 var low = require('lowdb');
 var db = low('db.json');
 
@@ -75,7 +76,7 @@ function fetchSessionInfo(url) {
 		var hasTimeSlot = false;
 		for (var k in evt) {
 		    hasTimeSlot = true;
-
+		    obj = extend({}, obj);
 		    obj.startTime = new Date(evt[k]['Has start time']);
 		    obj.location = evt[k]['Has session location'];
 		    obj.duration = evt[k]['Has duration'];
